@@ -32,6 +32,7 @@ pipeline {
 	  steps {
 		sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all"
 	  }
+	}
 	stage("Running on CentOS"){
 	  agent {
 		label 'CentOS'
@@ -48,5 +49,4 @@ pipeline {
 		archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
 	}
   }
-}
 }
