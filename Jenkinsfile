@@ -34,10 +34,11 @@ pipeline {
 		label 'apache'
 	  }
 	  steps {
-		sh "mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}"
+//		sh "mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}"
         sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
 	  }
 	}
+	stage("Running on CentOS") {
 	stage("Running on CentOS") {
 	  agent {
 		label 'CentOS'
