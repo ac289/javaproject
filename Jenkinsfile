@@ -1,16 +1,16 @@
 pipeline {
   agent none
-	
+
   options {
 	buildDiscarder(logRotator(numToKeepStr: '2',artifactNumToKeepStr: '1'))
   }
-  
+
   stages {
     stage ('Unit Tests') {
 	  agent {
 		label 'apache'
 	  }
-	  
+
 	  steps {
 		sh 'ant -f test.xml -v'
 		junit 'reports/result.xml'
@@ -55,6 +55,10 @@ pipeline {
 			sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
 		}
 	}
+  stage('Promote to Green') {
+    steps {
+        sh "cp /var/www/html/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangle_${env.BUILD_NUMBER}.jar"
+      }
+    }
   }
 }
-
