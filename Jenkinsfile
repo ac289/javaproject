@@ -33,7 +33,7 @@ pipeline {
         label 'apache'
       }
       steps {
-        sh "if ![ -d '/var/www/html/rectangles/all/${env.BRANCH_NAME}' ]; then mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}; fi"
+        sh "mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
         sh "cp dist/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
       }
     }
@@ -95,7 +95,7 @@ pipeline {
             subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Development Promoted to Master",
             body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Development Promoted to Master":</p>
             <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-            to: "brandon@linuxacademy.com"
+            to: "ac427@hotmail.co.uk"
           )
         }
       }
